@@ -1,0 +1,35 @@
+<resources>
+
+<!-- Base application theme. -->
+<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Customize your theme here. -->
+
+</style>
+
+<style name="textBigStyle">
+    <item name="android:textColor">@color/colorMainText</item>
+    <item name="android:textSize">@dimen/textBigSize</item>
+    <item name="android:fontFamily">@font/open_sans_regular</item>
+
+</style>
+
+<style name="smallTextStyle">
+    <item name="android:textColor">@color/colorSmallText</item>
+    <item name="android:textSize">@dimen/textSmallSize</item>
+    <item name="android:fontFamily">@font/open_sans_regular</item>
+    <item name="android:layout_marginBottom">@dimen/mrgBSmalltxt</item>
+
+</style>
+
+<style name="insideElStylePadMrgBack">
+    <item name="android:layout_marginTop">@dimen/mrgTopWithinEl</item>
+    <item name="android:background">@drawable/silver_rounded_border</item>
+    <item name="android:paddingLeft">@dimen/padLRInsideEl</item>
+    <item name="android:paddingRight">@dimen/padLRInsideEl</item>
+    <item name="android:paddingTop">@dimen/padTBInsideEl</item>
+    <item name="android:paddingBottom">@dimen/padTBInsideEl</item>
+    <item name="android:layout_marginLeft">@dimen/padfromBorderLeftRight</item>
+    <item name="android:layout_marginRight">@dimen/padfromBorderLeftRight</item>
+
+</style>
+</resources>

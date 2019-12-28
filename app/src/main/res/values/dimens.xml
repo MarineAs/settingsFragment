@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textBigSize">14sp</dimen>
+    <dimen name="textSmallSize">10sp</dimen>
+    <dimen name="marginFromBorders">15dp</dimen>
+    <dimen name="pad_ic_arrow">15dp</dimen>
+    <dimen name="padfromBorderTop">4dp</dimen>
+    <dimen name="padfromBorderLeftRight">10dp</dimen>
+    <dimen name="mrgTopWithinEl">10dp</dimen>
+    <dimen name="padLRInsideEl">10dp</dimen>
+    <dimen name="padTBInsideEl">14dp</dimen>
+    <dimen name="mrgLRtxtMore">10dp</dimen>
+    <dimen name="mrgTBtxtMore">15dp</dimen>
+    <dimen name="mrgLIcMore">20dp</dimen>
+    <dimen name="mrgRIcArrowMore">12dp</dimen>
+    <dimen name="mrgBSmalltxt">9dp</dimen>
+
+</resources>

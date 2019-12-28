@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.setting.viewModel.SettingsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorMainBackground"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/padfromBorderTop">
+
+        <RelativeLayout
+            style="@style/insideElStylePadMrgBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                style="@style/textBigStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:text="@{viewModel.lightMode ? @string/light_mode_on : @string/light_mode_off }"
+                app:font="@string/settingsFontName" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/btnSwitchColorMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:checked="@{viewModel.lightMode}"
+                android:onClick="@{() -> viewModel.switchLightMode()}"
+                android:thumb="@drawable/thumb_selector"
+                app:track="@drawable/track_selector" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/insideElStylePadMrgBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/textBigStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:text="@{viewModel.hqMode ?  @string/hq_mode_on : @string/hq_mode_off }"
+                app:font="@string/settingsFontName" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/btnSwitchHQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:checked="@{viewModel.hqMode}"
+                android:onClick="@{() -> viewModel.switchHQMode()}"
+                android:thumb="@drawable/thumb_selector"
+                app:track="@drawable/track_selector" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/insideElStylePadMrgBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textBigStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="@{viewModel.intMode? @string/int_ui : @string/cl_ui}" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <RelativeLayout
+                    android:id="@+id/intPlayerImg"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/silver_rounded_border"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/classicPlayerImage"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginRight="18dp"
+                        android:src="@drawable/ic_interactive_ui" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/classicPlayerImage"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/silver_rounded_border"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/intPlayerImg">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_classical_ui"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/intTxt"
+                    style="@style/smallTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/int_ui"
+                    android:textColor="@{viewModel.intMode ? @color/colorSmallTextSelsected : @color/colorSmallText}"
+                    app:layout_constraintBottom_toTopOf="@+id/intPlayerImg"
+                    app:layout_constraintEnd_toEndOf="@+id/intPlayerImg"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/intPlayerImg"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.533" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    style="@style/smallTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/cl_ui"
+                    android:textColor="@{viewModel.clMode ? @color/colorSmallTextSelsected : @color/colorSmallText}"
+                    app:layout_constraintBottom_toTopOf="@+id/classicPlayerImage"
+                    app:layout_constraintEnd_toEndOf="@+id/classicPlayerImage"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/classicPlayerImage"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.533" />
+
+                <RadioButton
+                    android:id="@+id/btnRadioInt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:buttonTint="@color/colorMainLightBlue"
+                    android:checked="@{viewModel.intMode}"
+                    android:onClick="@{() -> viewModel.checkedInteractiveMode()}"
+                    android:scaleX="0.6"
+                    android:scaleY="0.6"
+                    app:layout_constraintBottom_toTopOf="@+id/intPlayerImg"
+                    app:layout_constraintEnd_toStartOf="@+id/classicPlayerImage"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <RadioButton
+                    android:id="@+id/btnRadioCl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:buttonTint="@color/colorMainLightBlue"
+                    android:checked="@{viewModel.clMode}"
+                    android:onClick="@{()->viewModel.checkedClassicMode()}"
+                    android:scaleX="0.6"
+                    android:scaleY="0.6"
+                    app:layout_constraintBottom_toTopOf="@+id/classicPlayerImage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginBottom="24dp"
+            android:background="@color/colorBorder" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/imgAboutIc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/mrgLIcMore"
+                    android:layout_marginLeft="@dimen/mrgLIcMore"
+                    android:src="@drawable/ic_about"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/textBigStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/mrgLRtxtMore"
+                    android:layout_marginLeft="@dimen/mrgLRtxtMore"
+                    android:layout_marginTop="@dimen/mrgTBtxtMore"
+                    android:layout_marginBottom="@dimen/mrgTBtxtMore"
+                    android:text="@string/about_us"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imgArrowIc"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/imgAboutIc"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.512" />
+
+                <ImageView
+                    android:id="@+id/imgArrowIc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/mrgRIcArrowMore"
+                    android:layout_marginRight="@dimen/mrgRIcArrowMore"
+                    android:onClick="@{()->viewModel.moreAboutAs()}"
+                    android:padding="@dimen/pad_ic_arrow"
+                    android:src="@drawable/ic_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imageFeedbackIc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/mrgLIcMore"
+                    android:layout_marginLeft="@dimen/mrgLIcMore"
+                    android:src="@drawable/ic_feedback"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+
+                    style="@style/textBigStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/mrgLRtxtMore"
+                    android:layout_marginLeft="@dimen/mrgLRtxtMore"
+                    android:layout_marginTop="@dimen/mrgTBtxtMore"
+                    android:layout_marginBottom="@dimen/mrgTBtxtMore"
+                    android:text="@string/feedback"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imgArrowIc1"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/imageFeedbackIc"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.512" />
+
+                <ImageView
+                    android:id="@+id/imgArrowIc1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/mrgRIcArrowMore"
+                    android:layout_marginRight="@dimen/mrgRIcArrowMore"
+                    android:onClick="@{()->viewModel.moreFeedBack()}"
+                    android:padding="@dimen/pad_ic_arrow"
+                    android:src="@drawable/ic_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/helpIc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/mrgLIcMore"
+                    android:layout_marginLeft="@dimen/mrgLIcMore"
+                    android:src="@drawable/ic_help"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/textBigStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/mrgLRtxtMore"
+                    android:layout_marginLeft="@dimen/mrgLRtxtMore"
+                    android:layout_marginTop="@dimen/mrgTBtxtMore"
+                    android:layout_marginBottom="@dimen/mrgTBtxtMore"
+                    android:text="@string/help"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/helpArrowIc"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/helpIc"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.512" />
+
+                <ImageView
+                    android:id="@+id/helpArrowIc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/mrgRIcArrowMore"
+                    android:layout_marginRight="@dimen/mrgRIcArrowMore"
+                    android:onClick="@{()->viewModel.moreHelp()}"
+                    android:padding="@dimen/pad_ic_arrow"
+                    android:src="@drawable/ic_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:id="@+id/imageTerms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/mrgLIcMore"
+                    android:layout_marginLeft="@dimen/mrgLIcMore"
+                    android:src="@drawable/ic_terms"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/textBigStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/mrgLRtxtMore"
+                    android:layout_marginLeft="@dimen/mrgLRtxtMore"
+                    android:layout_marginTop="@dimen/mrgTBtxtMore"
+                    android:layout_marginBottom="@dimen/mrgTBtxtMore"
+                    android:text="@string/terms_and_privaces"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imgArrowIc3"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/imageTerms"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.512" />
+
+                <ImageView
+                    android:id="@+id/imgArrowIc3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/mrgRIcArrowMore"
+                    android:layout_marginRight="@dimen/mrgRIcArrowMore"
+                    android:onClick="@{()->viewModel.moreTerms()}"
+                    android:padding="@dimen/pad_ic_arrow"
+                    android:src="@drawable/ic_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>
