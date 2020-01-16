@@ -1,36 +1,37 @@
 package com.example.setting.viewModel
 
 
-import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.setting.PreferencesManager
 
 
-class SettingsViewModel(private val pref: SharedPreferences) : ViewModel() {
+class SettingsViewModel(private val pref: PreferencesManager) : ViewModel() {
 
-    val lightMode: MutableLiveData<Boolean> = MutableLiveData(pref.getBoolean("lightMode", true))
-    val hqMode: MutableLiveData<Boolean> = MutableLiveData(pref.getBoolean("hqMode", false))
-    val clMode: MutableLiveData<Boolean> = MutableLiveData(pref.getBoolean("clMode", true))
-    val intMode: MutableLiveData<Boolean> = MutableLiveData(pref.getBoolean("intMode", false))
+    val lightMode: MutableLiveData<Boolean> = MutableLiveData(pref.lightToggle)
+    val hqMode: MutableLiveData<Boolean> = MutableLiveData(pref.hqMode)
+    val clMode: MutableLiveData<Boolean> = MutableLiveData(pref.clMode)
+    val intMode: MutableLiveData<Boolean> = MutableLiveData(pref.intMode)
 
     fun switchLightMode() {
         if (lightMode.value == false) {
             lightMode.value = true
-            updatePref("lightMode", true)
+            pref.lightToggle = true
         } else {
             lightMode.value = false
-            updatePref("lightMode", false)
+            pref.lightToggle = false
         }
     }
 
     fun switchHQMode() {
         if (hqMode.value == false) {
             hqMode.value = true
-            updatePref("hqMode", true)
+            pref.hqMode = true
+
         } else {
             hqMode.value = false
-            updatePref("hqMode", false)
+            pref.hqMode = false
         }
     }
 
@@ -38,8 +39,8 @@ class SettingsViewModel(private val pref: SharedPreferences) : ViewModel() {
         if (clMode.value == false) {
             clMode.value = true
             intMode.value = false
-            updatePref("clMode", true)
-            updatePref("intMode", false)
+            pref.clMode = true
+            pref.intMode = false
         }
     }
 
@@ -47,8 +48,8 @@ class SettingsViewModel(private val pref: SharedPreferences) : ViewModel() {
         if (intMode.value == false) {
             clMode.value = false
             intMode.value = true
-            updatePref("clMode", false)
-            updatePref("intMode", true)
+            pref.clMode = false
+            pref.intMode = true
         }
     }
 
@@ -69,11 +70,5 @@ class SettingsViewModel(private val pref: SharedPreferences) : ViewModel() {
 
     }
 
-    private fun updatePref(variable: String, value: Boolean) {
-        val editor = pref.edit()
-        editor.putBoolean(variable, value)
-        editor.apply()
-        editor.commit()
-    }
 }
 

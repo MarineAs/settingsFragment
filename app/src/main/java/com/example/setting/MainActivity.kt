@@ -1,10 +1,10 @@
 package com.example.setting
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : FragmentActivity() {
 

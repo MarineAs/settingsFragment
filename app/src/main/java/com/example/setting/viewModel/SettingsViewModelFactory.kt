@@ -1,15 +1,14 @@
 package com.example.setting.viewModel
 
-
-import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.setting.PreferencesManager
 
 
-class SettingsViewModelFactory(private val pref: SharedPreferences) : ViewModelProvider.Factory {
+class SettingsViewModelFactory(private val pref: PreferencesManager) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return modelClass.getConstructor(SharedPreferences::class.java).newInstance(pref)
+        return modelClass.getConstructor(PreferencesManager::class.java).newInstance(pref)
     }
 
 }

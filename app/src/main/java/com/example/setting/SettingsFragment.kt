@@ -12,17 +12,21 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.setting.databinding.SettingsFragmentBinding
 import com.example.setting.viewModel.SettingsViewModel
 import com.example.setting.viewModel.SettingsViewModelFactory
-import kotlinx.android.synthetic.main.settings_fragment.*
 
 
 class SettingsFragment : Fragment() {
 
     private lateinit var factory: SettingsViewModelFactory
-    private val pref: SharedPreferences? by lazy {
-        context?.applicationContext
-            ?.getSharedPreferences("MyPref", MODE_PRIVATE)
+    private val preference by lazy {
+        PreferencesManager(
+            context?.applicationContext!!.getSharedPreferences(
+                "MyPref",
+                MODE_PRIVATE
+            )
+        )
     }
     private lateinit var viewModel: SettingsViewModel
+    private lateinit var databinding: SettingsFragmentBinding
 
     companion object {
         fun getInstance(): SettingsFragment {
@@ -35,16 +39,19 @@ class SettingsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        factory = SettingsViewModelFactory(pref!!)
+        factory = SettingsViewModelFactory(preference)
         viewModel =
             ViewModelProviders.of(this, factory).get(SettingsViewModel::class.java)
-        val databinding: SettingsFragmentBinding =
+        databinding =
             DataBindingUtil.inflate(layoutInflater, R.layout.settings_fragment, container, false)
         val view = databinding.root
-        databinding.viewModel = viewModel
-        databinding.lifecycleOwner = this
-
 
         return view
+    }
+
+    override fun onStart() {
+        super.onStart()
+        databinding.viewModel = viewModel
+        databinding.lifecycleOwner = this
     }
 }
